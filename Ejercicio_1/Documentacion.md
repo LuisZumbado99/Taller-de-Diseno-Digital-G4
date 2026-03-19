@@ -4,9 +4,9 @@ El ejercicio 1 consta de 3 archivos compatibles con Vivado y trabajados con Syst
 
 ## Archivos presentes:
 
-Desing Source Source: Ejercicio_1.sv 
-Testbench Code: Ejercicio_1tb.sv
-Constraints Code: Nexys4_Master_Ejercicio_1.xdc
+Desing Source Source: Ejercicio_1.sv <br/>
+Testbench Code: Ejercicio_1tb.sv <br/>
+Constraints Code: Nexys4_Master_Ejercicio_1.xdc <br/>
 Video de evidencia del funcionamiento en la FPGA: Funcionamiento_Ejercicio_1.mp4
 
 ## Tarjeta utilizada:
