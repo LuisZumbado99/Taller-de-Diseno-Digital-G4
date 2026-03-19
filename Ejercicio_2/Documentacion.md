@@ -1,3 +1,4 @@
+
 # Ejercicio 2
 
 El módulo 2 emula el funcionamiento de un multiplexor de cuatro entradas, parametrizado, para un ancho de datos (bus width) de entrada y salida variable. Para este 
@@ -30,6 +31,9 @@ INFO: [Vivado 12-24828] Executing command : report_utilization -file Ejercicio_2
 
 
 # Video de funcionamiento:
+
+
+<https://github.com/user-attachments/assets/f7b4368e-d960-4b8c-98ab-6e3db9e122eb>
 
 
 
