@@ -11,3 +11,15 @@ Constraints Code: Nexys4_Master_Ejercicio_1.xdc
 ## Tarjeta utilizada:
 
 Nexys 4 DDR Artix-7 FPGA
+
+## Log report después de síntesis:
+
+Synth Design complete | Checksum: d7fea69d
+INFO: [Common 17-83] Releasing license: Synthesis
+18 Infos, 2 Warnings, 2 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:00:58 . Memory (MB): peak = 1606.715 ; gain = 1201.910
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1606.715 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/luisd/Escritorio/Taller de Diseno Digital/Laboratorio_1/Laboratorio_1.runs/synth_1/Ejercicio_1.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file Ejercicio_1_utilization_synth.rpt -pb Ejercicio_1_utilization_synth.pb
