@@ -26,4 +26,4 @@ INFO: [Vivado 12-24828] Executing command : report_utilization -file Ejercicio_1
 
 # Video de funcionamiento:
 
-<video https://github.com/user-attachments/assets/b4d7331b-8348-4ec3-92cb-b9d58dc28ac6 >
+<https://github.com/user-attachments/assets/b4d7331b-8348-4ec3-92cb-b9d58dc28ac6>
