@@ -6,8 +6,7 @@ El ejercicio 1 consta de 3 archivos compatibles con Vivado y trabajados con Syst
 
 Desing Source Source: Ejercicio_1.sv <br/>
 Testbench Code: Ejercicio_1tb.sv <br/>
-Constraints Code: Nexys4_Master_Ejercicio_1.xdc <br/>
-Video de evidencia del funcionamiento en la FPGA: Funcionamiento_Ejercicio_1.mp4
+Constraints Code: Nexys4_Master_Ejercicio_1.xdc
 
 ## Tarjeta utilizada:
 
@@ -24,3 +23,7 @@ INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WA
 Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1606.715 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/luisd/Escritorio/Taller de Diseno Digital/Laboratorio_1/Laboratorio_1.runs/synth_1/Ejercicio_1.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Ejercicio_1_utilization_synth.rpt -pb Ejercicio_1_utilization_synth.pb
+
+# Video de funcionamiento:
+
+<video https://github.com/user-attachments/assets/b4d7331b-8348-4ec3-92cb-b9d58dc28ac6 >
