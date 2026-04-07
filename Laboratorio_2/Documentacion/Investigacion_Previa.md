@@ -50,3 +50,40 @@ En FPGA, las memorias se implementan típicamente usando bloques internos (BRAM)
   - 0x02004           → LEDs
   - 0x02010–0x0201C   → UART
   - 0x40000 – 0x7FFFF → RAM
+
+### Fuentes
+
+#### Arquitectura RISC-V (RV32I)
+- RISC-V Foundation. *The RISC-V Instruction Set Manual, Volume I: Unprivileged ISA*  
+  https://riscv.org/technical/specifications/
+
+- Patterson, D. A., & Waterman, A. (2017). *The RISC-V Reader: An Open Architecture Atlas*  
+  https://riscv.org/
+
+#### Toolchain RISC-V
+- GNU Toolchain for RISC-V  
+  https://github.com/riscv-collab/riscv-gnu-toolchain
+
+- SiFive Documentation – RISC-V Toolchain Guide  
+  https://www.sifive.com/documentation
+
+### Protocolo AXI-Lite
+- ARM. *AMBA AXI and ACE Protocol Specification (AXI4)*  
+  https://developer.arm.com/documentation/ihi0022/latest
+
+- Xilinx. *AXI Reference Guide (UG1037)*  
+  https://www.xilinx.com/support/documentation/ip_documentation/axi_ref_guide/latest/ug1037-axi-reference-guide.pdf
+
+### Memorias en FPGA
+- Xilinx. *Block Memory Generator (PG058)*  
+  https://www.xilinx.com/support/documentation/ip_documentation/blk_mem_gen/latest/pg058-blk-mem-gen.pdf
+
+- Xilinx. *Vivado Design Suite User Guide: Memory Resources (UG473)*  
+  https://www.xilinx.com/support/documentation/user_guides/ug473_7Series_Memory_Resources.pdf
+
+### Implementaciones RISC-V de referencia
+- PicoRV32 (core RISC-V minimalista)  
+  https://github.com/YosysHQ/picorv32
+
+- UltraEmbedded RISC-V Core  
+  https://github.com/ultraembedded/riscv
