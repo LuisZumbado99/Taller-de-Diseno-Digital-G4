@@ -7,9 +7,9 @@
 
 #### Estructura del proyecto:
 rtl/ \
-├── picorv32.v          # (original, NO tocar) \
-├── clock_gen.sv        # tu PLL \
-├── top.sv              # top-level del sistema \
-├── memory.sv           # ROM/RAM \
-├── peripherals.sv      # UART, LEDs, etc. \
-└── bus.sv              # interconexión 
+├── picorv32.v           \
+├── clock_gen.sv         \
+├── top.sv               \
+├── memory.sv            \
+├── peripherals.sv       \
+└── bus.sv               
