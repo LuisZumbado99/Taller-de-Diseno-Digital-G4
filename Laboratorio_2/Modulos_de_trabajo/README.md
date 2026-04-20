@@ -5,7 +5,9 @@
   - clock_gen.sv → Wrapper del PLL (El PLL se debe configurar desde el ClockWizard de Vivado)
   - top.sv → Módulo Top
   - memory.sv → Módulo de memoria RAM y ROM
-  - peripherals.sv → Modulo de transmisión tipo UART (Adaptación de repositorio SystemVerilog UART and Testbench)
+  - peripherals.sv → Múdulo de transmisión tipo UART (Adaptación de repositorio SystemVerilog UART and Testbench)
+  - uart_rx.sv → Módulo para recepción de transmisión tipo UART (Extraído de repositorio SystemVerilog UART and Testbench)
+  - uart_tx.sv → Módulo para emisión de transmisión tipo UART (Extraído de repositorio SystemVerilog UART and Testbench)
 
 #### Estructura del proyecto:
 rtl/ \
