@@ -1,10 +1,11 @@
 ### Módulos de trabajo detallados en la división del laboratorio en sub-issues.
 #### Archivos presentes en la carpeta:
-  - PicoRV32.sv →  Microcontrolador de 32 bits
-  - picorv32_tb.sv → Testbench para prueba de simulación del microcontrolador de 32 bits
+  - PicoRV32.sv →  Microcontrolador de 32 bits (Extraído de PicoRV32 - RISC-V CPU Core)
+  - picorv32_tb.sv → Testbench para prueba de simulación del microcontrolador de 32 bits (Extraído de PicoRV32 - RISC-V CPU Core)
   - clock_gen.sv → Wrapper del PLL (El PLL se debe configurar desde el ClockWizard de Vivado)
   - top.sv → Módulo Top
   - memory.sv → Módulo de memoria RAM y ROM
+  - peripherals.sv → Modulo de transmisión tipo UART (Adaptación de repositorio SystemVerilog UART and Testbench)
 
 #### Estructura del proyecto:
 rtl/ \
@@ -14,3 +15,9 @@ rtl/ \
 ├── memory.sv            \
 ├── peripherals.sv       \
 └── bus.sv               
+
+#### Repositorios externos utilizados:
+
+1. [SystemVerilog UART and Testbench](https://github.com/Adnan259/SV-uart-with-tb/) 
+2. [PicoRV32 - RISC-V CPU Core](https://github.com/YosysHQ/picorv32)
+
