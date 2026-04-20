@@ -2,17 +2,16 @@ module top (
     input  logic CLK100MHZ,
     input  logic rst_btn,
     input  logic [15:0] sw,
+    input  logic uart_rx,     
+    output logic uart_tx,     
     output logic [15:0] led
 );
 
- 
-    // Señales de reloj
- 
+
+    // Reloj
+
     logic clk_sys;
     logic pll_locked;
-
- 
-    // PLL
 
     clock_gen clk_inst (
         .clk_in(CLK100MHZ),
@@ -21,15 +20,15 @@ module top (
         .locked(pll_locked)
     );
 
- 
-    // Reset activo en bajo
- 
+
+    // Reset
+
     logic resetn;
     assign resetn = pll_locked;
 
- 
-    // Señales de memoria (CPU)
- 
+
+    // Señales CPU
+
     logic        mem_valid;
     logic        mem_ready;
     logic [31:0] mem_addr;
@@ -38,12 +37,12 @@ module top (
     logic [31:0] mem_rdata;
 
  
-    // Señal interna de LEDs
+    // LEDs internos
  
     logic [15:0] led_internal;
 
  
-    // CPU PicoRV32
+    // CPU
  
     picorv32 cpu (
         .clk         (clk_sys),
@@ -69,11 +68,15 @@ module top (
         .mem_wstrb  (mem_wstrb),
         .mem_rdata  (mem_rdata),
         .led_out    (led_internal),
-        .sw_in      (sw)
+        .sw_in      (sw),
+
+        // UART conectado
+        .uart_rx    (uart_rx),
+        .uart_tx    (uart_tx)
     );
 
  
-    // Salida a LEDs físicos
+    // Salida LEDs
  
     assign led = led_internal;
 
