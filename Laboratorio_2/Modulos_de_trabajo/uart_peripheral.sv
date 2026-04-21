@@ -15,7 +15,7 @@ module uart_peripheral (
     output logic        uart_tx_o
 );
 
-
+ 
     // Direcciones
  
     localparam ADDR_TX     = 32'h00002010;
@@ -31,17 +31,14 @@ module uart_peripheral (
     end
 
  
-    // Registros UART
+    // Registros
  
     logic [7:0] tx_data;
     logic       tx_start;
-    logic       tx_busy;
+    logic       tx_done;
 
     logic [7:0] rx_data;
-    logic       rx_ready;
-
-
-    logic rx_clear;
+    logic       rx_done;
 
  
     // TX control
@@ -56,17 +53,16 @@ module uart_peripheral (
     end
 
  
-    // RX clear
+    // STATUS
  
-    always_ff @(posedge clk) begin
-        rx_clear <= 0;
+    logic tx_busy;
+    assign tx_busy = ~tx_done;    
 
-        if (mem_valid && is_rx && mem_wstrb == 0)
-            rx_clear <= 1;
-    end
+    logic rx_ready;
+    assign rx_ready = rx_done;    
 
  
-    // Interfaz lectura CPU
+    // Lectura CPU
  
     always_ff @(posedge clk) begin
         mem_ready <= 0;
@@ -86,26 +82,26 @@ module uart_peripheral (
     end
 
  
-    // Instancia TX (Repositorio)
+    // UART TX
  
     uart_tx tx_inst (
-        .clk      (clk),
-        .rst      (~resetn),
-        .data_in  (tx_data),
-        .start    (tx_start),
-        .tx       (uart_tx_o),
-        .busy     (tx_busy)
+        .clk     (clk),
+        .rst     (~resetn),
+        .newd    (tx_start),
+        .tx_data (tx_data),
+        .tx      (uart_tx_o),
+        .donetx  (tx_done)
     );
 
  
-    // Instancia RX (Repositorio)
+    // UART RX  
  
     uart_rx rx_inst (
-        .clk       (clk),
-        .rst       (~resetn),
-        .rx        (uart_rx_i),
-        .data_out  (rx_data),
-        .data_ready(rx_ready)
+        .clk    (clk),
+        .rst    (~resetn),
+        .rx     (uart_rx_i),
+        .donerx (rx_done),    
+        .doutrx (rx_data)
     );
 
 endmodule
