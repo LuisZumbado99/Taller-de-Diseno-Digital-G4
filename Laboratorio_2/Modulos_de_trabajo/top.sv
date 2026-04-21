@@ -25,6 +25,9 @@ module top (
  
     logic resetn;
     assign resetn = pll_locked;
+ 
+    (* KEEP = "TRUE" *) logic [15:0] sw_keep;
+    assign sw_keep = sw;
 
  
     // CPU signals
@@ -36,7 +39,7 @@ module top (
     logic [3:0]  mem_wstrb;
     logic [31:0] mem_rdata;
 
- 
+
     // CPU
  
     picorv32 cpu (
@@ -85,21 +88,20 @@ module top (
         .mem_wstrb(mem_wstrb),
         .mem_rdata(mem_rdata),
 
-        // MEMORY (ROM+RAM+GPIO)
-        .ram_valid(mem_s_valid),     
+        // MEMORY
+        .ram_valid(mem_s_valid),
         .ram_ready(mem_s_ready),
         .ram_addr(mem_s_addr),
         .ram_wdata(mem_s_wdata),
         .ram_wstrb(mem_s_wstrb),
         .ram_rdata(mem_s_rdata),
 
-        // no usamos ROM separado en esta versión
+        // No usados
         .rom_valid(),
         .rom_ready(1'b0),
         .rom_addr(),
         .rom_rdata(32'b0),
 
-        // IO (lo manejamos dentro de memory)
         .io_valid(),
         .io_ready(1'b0),
         .io_addr(),
@@ -130,11 +132,11 @@ module top (
         .rdata (mem_s_rdata),
 
         .led_out (led),
-        .sw_in   (sw)
+        .sw_in   (sw_keep) 
     );
 
  
-    // UART PERIPHERAL
+    // UART
  
     uart_peripheral uart0 (
         .clk        (clk_sys),
