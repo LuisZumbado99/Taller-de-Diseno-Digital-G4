@@ -8,6 +8,8 @@
   - peripherals.sv → Múdulo de transmisión tipo UART (Adaptación de repositorio SystemVerilog UART and Testbench)
   - uart_rx.sv → Módulo para recepción de transmisión tipo UART (Extraído de repositorio SystemVerilog UART and Testbench)
   - uart_tx.sv → Módulo para emisión de transmisión tipo UART (Extraído de repositorio SystemVerilog UART and Testbench)
+  - data_ram.sv → RAM de datos nueva para 0x40000–0x7FFFF (Espacio de memoria de escritura/lectura donde almacenar variables temporales)
+  - firmware_app → Código en ensamblador para efectuar sumas y restas de 2 números enteros.
 
 #### Estructura del proyecto:
 rtl/ \
@@ -15,6 +17,7 @@ rtl/ \
 ├── clock_gen.sv         \
 ├── top.sv               \
 ├── memory.sv            \
+├── data_ram.sv          \
 ├── peripherals.sv       \
 └── bus.sv               
 
