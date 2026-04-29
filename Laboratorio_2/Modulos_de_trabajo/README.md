@@ -13,13 +13,23 @@
 
 #### Estructura del proyecto:
 rtl/ \
-├── picorv32.v           \
-├── clock_gen.sv         \
-├── top.sv               \
-├── memory.sv            \
-├── data_ram.sv          \
-├── peripherals.sv       \
-└── bus.sv               
+├── src                             \
+│    ├── top.sv                      \
+│    ├── bus_interconnect.sv         \
+│    ├── data_ram.sv                 \
+│    ├── memory.sv                   \
+│    ├── uart_peripheral.sv          \
+│    ├── uart_rx.sv                  \
+│    ├── uart_tx.sv                  \
+│    ├── clock_gen.sv                \
+│    ├── PicoRV32.sv                 \
+│    └── constraints/                \
+│        └── nexys4_ddr.xdc          \
+└── firmware                        \
+     ├── firmware_calculator.s       \
+     ├── firmware_calculator.hex     \
+     └── link.ld                     \
+              
 
 #### Repositorios externos utilizados:
 
