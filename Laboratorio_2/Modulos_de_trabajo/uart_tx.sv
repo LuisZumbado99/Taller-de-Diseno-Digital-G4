@@ -1,73 +1,94 @@
- module uart_tx
-    #(parameter clk_freq = 1000000,
-      parameter baud_rate = 9600
-     )
-    (input clk,
-     input rst,
-     input newd,
-     input [7:0] tx_data,
-     output reg tx,
-     output reg donetx
-  );
-    
-    localparam countclk = clk_freq/baud_rate;
-    integer count = 0;
-    integer countd = 0;
-    
-    reg uclk = 0;
-    
-    
-    always @(posedge clk) begin 
-      if(count < countclk/2) begin 
-        count <= count +1;
-      end
-        else begin
-          count <= 0;
-          uclk <= ~uclk;
-        end
-      end
-      
-      enum bit[1:0] {idle = 2'b00, start = 2'b01, transfer = 2'b10, done = 2'b11} state;
-      
-      reg [7:0] din;
-      
-      always @(posedge uclk) begin
+module uart_tx #(
+    parameter CLK_FREQ_HZ = 100_000_000,
+    parameter BAUD_RATE   = 9600
+)(
+    input  logic       clk,
+    input  logic       rst,
+    input  logic       newd,
+    input  logic [7:0] tx_data,
+    output logic       tx,
+    output logic       donetx
+);
+
+    localparam integer BAUD_DIV = CLK_FREQ_HZ / BAUD_RATE;
+    localparam integer CNT_W    = $clog2(BAUD_DIV) + 1;
+
+    typedef enum logic [1:0] {
+        IDLE,
+        START,
+        DATA,
+        STOP
+    } state_t;
+
+    state_t           state;
+    logic [CNT_W-1:0] baud_cnt;
+    logic [2:0]       bit_cnt;
+    logic [7:0]       shift_reg;
+
+    always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-          state <= idle;
+            state    <= IDLE;
+            tx       <= 1'b1;
+            donetx   <= 1'b0;
+            baud_cnt <= '0;
+            bit_cnt  <= '0;
+            shift_reg <= '0;
+        end else begin
+            donetx <= 1'b0;  // pulso de 1 ciclo por defecto
+
+            case (state)
+
+                IDLE: begin
+                    tx <= 1'b1;
+                    if (newd) begin
+                        shift_reg <= tx_data;
+                        baud_cnt  <= '0;
+                        bit_cnt   <= '0;
+                        state     <= START;
+                    end
+                end
+
+                START: begin
+                    tx <= 1'b0;  // start bit
+                    if (baud_cnt == CNT_W'(BAUD_DIV - 1)) begin
+                        baud_cnt <= '0;
+                        state    <= DATA;
+                    end else begin
+                        baud_cnt <= baud_cnt + 1'b1;
+                    end
+                end
+
+                DATA: begin
+                    tx <= shift_reg[0];  // LSB primero
+                    if (baud_cnt == CNT_W'(BAUD_DIV - 1)) begin
+                        baud_cnt  <= '0;
+                        shift_reg <= {1'b0, shift_reg[7:1]};
+                        if (bit_cnt == 3'd7) begin
+                            bit_cnt <= '0;
+                            state   <= STOP;
+                        end else begin
+                            bit_cnt <= bit_cnt + 1'b1;
+                        end
+                    end else begin
+                        baud_cnt <= baud_cnt + 1'b1;
+                    end
+                end
+
+                STOP: begin
+                    tx <= 1'b1;  // stop bit
+                    if (baud_cnt == CNT_W'(BAUD_DIV - 1)) begin
+                        baud_cnt <= '0;
+                        donetx   <= 1'b1;
+                        state    <= IDLE;
+                    end else begin
+                        baud_cnt <= baud_cnt + 1'b1;
+                    end
+                end
+
+                default: state <= IDLE;
+
+            endcase
         end
-        else begin
-          
-          case(state) 
-            idle: begin
-              countd <= 0;
-              tx <= 1'b1;
-              donetx <= 1'b0;
-              
-              if(newd) begin
-                state <= transfer;
-                tx <= 1'b0;
-                din <= tx_data;
-              end
-              else state<= idle;
-            end//idle
-            
-            
-            transfer: begin 
-              if(countd <= 7) begin
-                countd <= countd + 1;
-                tx <= din[countd];
-                state <= transfer;
-              end
-              else begin
-                countd <=0;
-                donetx <= 1'b1;
-                state <= idle;
-                donetx <= 1'b1;
-              end
-            end
-            
-            default: state<=idle;
-          endcase
-        end
-      end
-  endmodule
+    end
+
+endmodule
