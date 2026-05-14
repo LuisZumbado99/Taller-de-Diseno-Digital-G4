@@ -97,6 +97,27 @@ Registros importantes del ADXL362 versiones completas de 12 bits:
 
 El último registro de la tabla de registros importantes en sus versiones completas de 12 bits, es el encargado de habilitar el modo de medición.
 
+## 3. Relación entre señales X, Y y Z del acelerómetro.
+
+El acelerómetro mide aceleración en tres ejes ortogonales, eje X para inclinación en izquierda y derecha, eje Y para inclinación adelante y atrás y eje Z para movimiento vertical, como referencia se puede aprecial la imagen a continuación: 
+
+<img width="275" height="250" alt="image" src="https://github.com/user-attachments/assets/307b44a0-926f-4916-a939-488591e94bf4" />
+
+La interpretación física de los movimientos detectados en la placa son, para el eje X los valores positivos representan inclinación hacia derecha, valores negativos inclinación hacia izquierda. Para el eje Y los valores positivos representan inclinación frontal y valores negativos inclinación trasera. Finalmente, para el eje Z
+se detecta gravedad perpendicular a la placa. Cuando la placa está horizontal y en reposo los valores son X ≈ 0 , Y ≈ 0 y Z ≈ 1g. Los valores se almacenan en complemento a dos (two's complement).
+
+## 4. Aplicaciones interactivas usando acelerómetro.
+
+El laboratorio solicita conectar la Nexys4 como control de una aplicación en laptop. Entre las opciones consideradas como viables están:
+
+| Opción | Ejemplo(s) | Ventajas |
+| ---         |     ---      |          --- |
+| Control de videojuego  |  Juego tipo laberinto, control de nave o control de vehículo   |  Muy visual y fácil de demostrar  |
+| Mouse por movimiento  |  Mover cursor usando inclinación   |  Fácil mapeo, limitado a 2 ejes  |
+| Simulador 3D  |  Rotar objeto 3D usando acelerómetro   |  Muy visual  |
+
+Para este laboratorio la opción más recomendada podría ser la del juego 2D/3D controlado por inclinación, ya que, simplifica UART, permite mostrar claramente X/Y/Z, demuestra integración completa FPGA + software
+y es fácil de explicar.
 
 ## Rerefencias:
 
@@ -104,3 +125,5 @@ El último registro de la tabla de registros importantes en sus versiones comple
 [2. SPI CPOL/CPHA Tutorial](https://chatgpt.com/c/6a04e1ba-2138-83e8-9544-a6f9feb539ce#:~:text=SPI%20CPOL/CPHA%20Tutorial) \
 [3. ADXL362 Official Datasheet](https://www.analog.com/en/products/adxl362?utm_source=chatgpt.com)\
 [4. ADXL362 Datasheet Mirror (DigiKey)](https://www.digikey.com/en/htmldatasheets/production/1110632/0/0/1/eval-adxl362z-s.html?utm_source=chatgpt.com) \
+[5. SPI Master for ADXL362 discussion](https://www.reddit.com/r/FPGA/comments/1swz6yu/spi_master_for_adxl362_device/?utm_source=chatgpt.com) \
+[6. CPOL/CPHA explanation discussion](https://www.reddit.com/r/FPGA/comments/ibbkye?utm_source=chatgpt.com) 
