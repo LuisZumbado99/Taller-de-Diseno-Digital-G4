@@ -15,7 +15,7 @@ Funcionamiento general:
 - Los datos se transmiten bit a bit entre MOSI y MISO.
 - Al finalizar la transacción, CS vuelve a alto.
 
-Si el protocolo utilizado es full duplex, significa que la transmisión y recepción ocurren simultáneamente. El protocólo SPI posee cuatro modos de operación definidos por CPOL → polaridad del clock y por CPHA → fase de muestreo.
+Si el protocolo utilizado es full duplex, significa que la transmisión y recepción ocurren simultáneamente. El protocólo SPI posee cuatro modos de operación definidos por CPOL polaridad del clock y por CPHA fase de muestreo.
 
 | Modo SPI | CPOL | CPHA |
 | ---         |     ---      |          --- |
@@ -144,7 +144,29 @@ Registros importantes del ADXL362 versiones completas de 12 bits:
 | 0x13 | ZDATA_H |
 | 0x2D | POWER_CTL |
 
-El último registro de la tabla de registros importantes en sus versiones completas de 12 bits, es el encargado de habilitar el modo de medición.
+El último registro de la tabla de registros importantes en sus versiones completas de 12 bits, es el encargado de habilitar el modo de medición. Juntando las tablas anteriores se puede obtener la tabla consolidada del mapa de registros del ADXL362, la cual es:
+
+| Dirección | Registro | Descripción | R/W |
+| --- | --- | --- | --- |
+| 0x00 | DEVID_AD | Device ID | R |
+| 0x01 | DEVID_MST | MAnufacturer ID | R |
+| 0x02 | PARTID | Part ID | R |
+| 0x08 | XDATA | Datos eje X | R |
+| 0x09 | YDATA | Datos eje Y | R |
+| 0x0A | ZDATA | Datos eje Z | R |
+| 0x0E | XDATA_L | Byte bajo X | R |
+| 0x0F | XDATA_H | Byte alto X | R |
+| 0x10 | YDATA_L | Byte bajo Y | R |
+| 0x11 | YDATA_H | Byte alto Y | R |
+| 0x12 | ZDATA_L | Byte bajo Z | R |
+| 0x13 | ZDATA_H | Byte alto Z | R |
+| 0x2D | POWER_CTL | Control de Medición | R/W |
+
+
+
+
+
+
 
 ## 3. Relación entre señales X, Y y Z del acelerómetro.
 
