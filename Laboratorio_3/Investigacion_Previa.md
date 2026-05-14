@@ -162,10 +162,9 @@ El último registro de la tabla de registros importantes en sus versiones comple
 | 0x13 | ZDATA_H | Byte alto Z | R |
 | 0x2D | POWER_CTL | Control de Medición | R/W |
 
+Diagrama de flujo de inicialización
 
-
-
-
+<img width="250" height="310" alt="Diagrama sin título drawio" src="https://github.com/user-attachments/assets/ff9fd557-e183-409a-aecb-3a7941420bae" />
 
 
 ## 3. Relación entre señales X, Y y Z del acelerómetro.
