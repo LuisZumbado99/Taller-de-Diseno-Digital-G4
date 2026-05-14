@@ -53,6 +53,55 @@ Propuesta de bits del registro de control:
 | 5 | CPHA |
 | 15:8 | Clock Divider |
 
+Para el CPOL/CPHA del ADXL362 es importante destacar que el ADXL362 opera en:
+
+| Parámetro | Valor |
+| --- | --- |
+| CPOL | 0 |
+| CPHA | 0 |
+| SPI Mode | Mode 0 |
+
+Esto significa que el clock idle está en bajo, los datos serán muestreados en flanco de subida y los datos serán cambiados en flanco de bajada. Esto implica que para la aplicación en la FPGA el controlador SPI deberá inicializar SCLK = 0, capturar MISO en rising edge y actualizar MOSI en falling edge. El ADXL362 usa comandos SPI específicos para su secuencia exacta de escritura, especificamente es:
+
+| Byte | Contenido |
+| --- | --- |
+| 1 | Command = 0x0A |
+| 2 | Dirección registro |
+| 3 | Dato |
+
+Ahora bien, para su secuencia exacta de lectura:
+
+| Byte | Contenido |
+| --- | --- |
+| 1 | Command = 0x0B |
+| 2 | Dirección registro |
+| 3+ | Dato(s) recibido(s) |
+
+Cabe destacar que el ADXL362 soporta lectura continua, por ejemplo, permite leer los 2 estados (alto y bajo) de los 3 ejes cartesianos (X,Y,Z) en una sola transición SPI.
+
+Diagramas de Timing (Relación temporal)
+
+<img width="275" height="130" alt="image" src="https://github.com/user-attachments/assets/37f1afd4-c3b4-4780-aceb-edc82a2774de" />
+
+Se puede apreciar en el gráfico de relación temporal que cuando el evento es un falling edge	el maestro cambia dato, mientras que, si el evento es un rising edge el esclavo captura dato.
+
+Finalmente, tenemos la estructura completa del frame (frame SPI esperado), para escritura tenemos:
+
+| Campo | Tamaño en bits |
+| --- | --- |
+| Command | 8 |
+| Address | 8 |
+| Data | 8 |
+| Total | 24 |
+
+Para lectura tenemos:
+
+| Campo | Tamaño en bits |
+| --- | --- |
+| Command | 8 |
+| Address | 8 |
+| Dummy clocks/Read data | 8+ |
+
 ## 2. Investigación del ADXL362 y registros de configuración.
 
 El acelerómetro usado en la Nexys4 es el ADXL362 de Analog Devices. El cual es un acelerómetro MEMS de 3 ejes con interfaz SPI digital.
