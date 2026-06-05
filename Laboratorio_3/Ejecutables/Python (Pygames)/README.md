@@ -17,4 +17,5 @@ por hacer uso de Pygame la cual es una biblioteca de Python gratuita y de códig
 ### Consideraciones
 
 Los juegos subidos a este repositorio están configurados para operar a 9600 baudios a través del COM4 como se muestra en las primeras líneas del código. Al principio de cada código a ejecutar está una sección que establece la configuración del puerto serial utilizado, antes de ejecutar el paso a paso se debe verificar el puerto COM que está utilizando la computadora para conectar con la FPGA y de ser necesario cambiarlo en el código de los juegos.
+Si después de ejecutar la interfaz y no presenta ningun tipo de funcionamiento apesar de que la FPGA está funcionando, es necesario aplicar un reset físico de la FPGA.
 
