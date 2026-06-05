@@ -12,7 +12,8 @@ por hacer uso de Pygame la cual es una biblioteca de Python gratuita y de códig
   5. Actualizar pip a la última versión disponible: `python -m pip install --upgrade pip`
   6. Crear un entorno virtual llamado "venv" en la carpeta actual: `python -m venv venv`
   7. Activar el entorno virtual en la terminal de Windows (CMD): `call venv\Scripts\activate.bat`
-  8. Instalar Pygame y cualquier otra librería requerida con sus versiones exactas: `pip install -r requirements.txt`
-  9. Ejecutar la aplicación de Pygame: `python Nombre_de_la_aplicacion.py`
+  8. Generar automáticamente el documento de texto plano que se utiliza en el ecosistema de Python: `pip freeze > requirements.txt`
+  9. Instalar Pygame y cualquier otra librería requerida con sus versiones exactas: `pip install -r requirements.txt`
+  10. Ejecutar la aplicación de Pygame: `python Nombre_de_la_aplicacion.py`
 
 
