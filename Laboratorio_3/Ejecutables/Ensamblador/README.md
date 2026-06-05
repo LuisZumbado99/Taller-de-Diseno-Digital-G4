@@ -1,7 +1,7 @@
 ## Implementación del programa en ensamblador
 
 Para el desarrollo del programa requerido, se sugirió el uso de un intérprete del ensamblador de RISC-V, particularmente para el subconjunto de instrucciones RV32I. 
-Se usó Ubutu para el interprete de ensambrador. ``
+Se usó Ubutu para el interprete de ensambrador.
 
 ### Paso a paso para generación e implementación del programa en ensamblador.
 
